@@ -5,12 +5,14 @@ on:
     branches:
       - main
 jobs:
-  build:
-
+  deploy-staging:
+    name: Deploy to staging
+    environment:
+      name: Staging
     runs-on: ubuntu-latest
     defaults:
-      run:
-        working-directory: ./api
+        run:
+          working-directory: ./api
     steps:
     - uses: actions/checkout@v3
     - name: Setup .NET
