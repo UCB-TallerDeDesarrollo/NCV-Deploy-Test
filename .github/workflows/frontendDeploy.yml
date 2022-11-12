@@ -72,7 +72,7 @@ jobs:
     name: Deploy to production
     environment:
       name: Production
-    needs: ci
+    needs: [deploy-staging]
     runs-on: ubuntu-latest
     defaults:
       run:
