@@ -65,5 +65,33 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_PROJECT: ncv-application-desarrollo
+          PROJECT_PATH: ./web-ui
+    
+  deploy-production:
+    name: Deploy to production
+    environment:
+      name: Production
+    needs: ci
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./web-ui
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Preparing Build Directory
+        run: npm run build
+        env:
+          CI: false
+
+      - name: Deployment on Firebase
+        uses: w9jds/firebase-action@master
+        with:
+          args: deploy --only hosting
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           FIREBASE_PROJECT: ncv-application
           PROJECT_PATH: ./web-ui
