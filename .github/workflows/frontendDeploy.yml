@@ -62,11 +62,10 @@ jobs:
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
-          channelId: live
-          projectId: ncv-application-desarrollo
-          PROJECT_PATH: ./web-ui
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_PROJECT: ncv-application-desarrollo
+          PROJECT_PATH: ./web-ui
     
   deploy-production:
     name: Deploy to production
