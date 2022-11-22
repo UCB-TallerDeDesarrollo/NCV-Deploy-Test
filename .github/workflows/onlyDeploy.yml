@@ -25,13 +25,10 @@ jobs:
       - name: Deployment on Firebase
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          args: deploy --only hosting
-
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN  }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN }}'
           channelId: live
           projectId: ncv-application-desarrollo
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           PROJECT_PATH: ./web-ui
-  
