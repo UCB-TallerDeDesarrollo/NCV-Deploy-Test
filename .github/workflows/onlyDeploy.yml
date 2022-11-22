@@ -32,7 +32,5 @@ jobs:
           channelId: live
           projectId: ncv-application-desarrollo
           entryPoint: ./web-ui
-          with:
-            args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
