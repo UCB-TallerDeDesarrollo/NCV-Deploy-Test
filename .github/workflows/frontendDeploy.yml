@@ -65,6 +65,7 @@ jobs:
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           FIREBASE_PROJECT: ncv-app-test
+          PROJECT_PATH: ./web-ui
     
   deploy-production:
     name: Deploy to production
