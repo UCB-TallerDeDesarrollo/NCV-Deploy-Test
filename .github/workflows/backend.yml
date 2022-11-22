@@ -1,6 +1,11 @@
 name: backEndTest
 
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - main
+      - secondIntent
+
 
 jobs:
   build:
