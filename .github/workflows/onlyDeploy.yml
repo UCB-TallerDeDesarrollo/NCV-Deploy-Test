@@ -28,7 +28,7 @@ jobs:
           args: deploy --only hosting
 
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN  }}'
+          FIREBASE_TOKEN: '${{ secrets.FIREBASE_TOKEN  }}'
           channelId: live
           projectId: ncv-application-desarrollo
         env:
