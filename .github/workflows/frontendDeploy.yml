@@ -58,7 +58,7 @@ jobs:
         env:
           CI: false
 
-      - name: Deployment on Firebase
+      - name: Deployment on Firebase 
         uses: w9jds/firebase-action@master
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
