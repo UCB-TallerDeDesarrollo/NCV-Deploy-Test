@@ -76,7 +76,7 @@ jobs:
     defaults:
       run:
         working-directory: ./web-ui
-    steps:
+    steps: 
       - uses: actions/checkout@v2
       - name: Install Dependencies
         run: npm install
