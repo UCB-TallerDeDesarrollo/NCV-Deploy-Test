@@ -1,21 +1,19 @@
-name: Deploy to Firebase-SECOND
+name: ONE-DEPLOY
 on:
   push:
     branches:
-      - master
       - secondIntent
 
 jobs:
-  build_and_deploy_develop:
-    name: Deploy to develop
+  build:
+    name: Deploy
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./web-ui
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-      
+      - uses: actions/checkout@v2
       - name: Install Dependencies
         run: npm install
 
@@ -25,9 +23,15 @@ jobs:
           CI: false
 
       - name: Deployment on Firebase
-      - uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: w9jds/firebase-action@master
         with:
+          args: deploy --only hosting
+
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
           firebaseServiceAccount: '${{ secrets.FIREBASE_TOKEN  }}'
           channelId: live
           projectId: ncv-application-desarrollo
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          PROJECT_PATH: ./web-ui
+  
