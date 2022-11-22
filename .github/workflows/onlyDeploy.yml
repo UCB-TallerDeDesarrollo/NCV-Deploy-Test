@@ -1,4 +1,4 @@
-name: Deploy to Firebase
+name: Deploy to Firebase-SECOND
 'on':
   push:
     branches:
@@ -13,7 +13,16 @@ jobs:
     steps:
       - name: Checkout develop
         uses: actions/checkout@v1
-      - run: npm ci && npm run build
+      
+      - name: Install Dependencies
+        run: npm install
+
+      - name: Preparing Build Directory
+        run: npm run build
+        env:
+          CI: false
+
+      - name: Deployment on Firebase
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
