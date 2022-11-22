@@ -59,11 +59,10 @@ jobs:
           CI: false
 
       - name: Deployment on Firebase
-        uses: lowply/deploy-firebase@v0.0.5
+        uses: w9jds/firebase-action@master
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          FIREBASE_PROJECT: ncv-application-desarrollo
-          PROJECT_PATH: ./web-ui
+          FIREBASE_PROJECT: ncv-app-test
     
   deploy-production:
     name: Deploy to production
