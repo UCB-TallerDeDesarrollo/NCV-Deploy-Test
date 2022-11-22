@@ -10,8 +10,10 @@ jobs:
   build_and_deploy_develop:
     name: Deploy to develop
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./web-ui
     steps:
-      - name: Checkout develop
       - uses: actions/checkout@v2
       
       - name: Install Dependencies
