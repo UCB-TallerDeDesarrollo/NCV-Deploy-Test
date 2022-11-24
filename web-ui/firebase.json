@@ -1,16 +1,33 @@
 {
-  "hosting": {
-    "public": "public",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "rewrites": [
-      {
+  "hosting": [ {
+      "target": "prod", 
+      "public": "prod/dist",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
         "source": "**",
         "destination": "/index.html"
-      }
-    ]
-  }
+        }
+        ]
+    },
+    {
+      "target": "dev",
+      "public": "public", 
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "rewrites": [
+        {
+        "source": "**",
+        "destination": "/index.html"
+        }
+        ] 
+    }
+  ]
 }
