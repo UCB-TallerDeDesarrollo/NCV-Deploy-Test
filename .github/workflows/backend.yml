@@ -1,6 +1,9 @@
 name: backEndTest
 
-on: [push]
+on:
+  push:
+    branches-ignore:
+      - thirdIntent
 
 jobs:
   build:
