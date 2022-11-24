@@ -1,5 +1,11 @@
 {
   "hosting": {
+    [
+    {
+      "target": "dev",
+      "public": "dev/dist"
+    }
+  ]
     "public": "build",
     "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
     "rewrites": [
