@@ -59,11 +59,15 @@ jobs:
           CI: false
 
       - name: Deployment on Firebase 
-        uses: FirebaseExtended/action-hosting-deploy@v0
+        uses: w9jds/firebase-action@master
         with:
-          firebaseServiceAccount: ${{ secrets.FIREBASE_TOKEN }}
-          channelId: live
+          args: deploy --only hosting
           projectId: ncv-app-test
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_PROJECT: ncv-app-test
+          PROJECT_PATH: ./web-ui
+        
     
   deploy-production:
     name: Deploy to production
