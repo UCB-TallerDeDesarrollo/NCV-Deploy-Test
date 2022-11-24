@@ -2,5 +2,9 @@
   "hosting": [ {
     "target": "dev", 
     "public": "build"
+  },
+  {
+    "target": "prod", 
+    "public": "build"
   }]
 }

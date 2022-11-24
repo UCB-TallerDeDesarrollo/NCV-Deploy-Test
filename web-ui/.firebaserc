@@ -7,6 +7,9 @@
       "hosting": {
         "dev": [
           "ncv-site-dev"
+        ],
+        "prod": [
+          "ncv-site-prod"
         ]
       }
     }

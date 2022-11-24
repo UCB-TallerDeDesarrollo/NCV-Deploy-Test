@@ -5,49 +5,13 @@ on:
       - main
 
 jobs:
-  ci:
-    name: Unit and end-to-end tests
+  deployDEV:
+    name: Deploy-dev
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./web-ui
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
 
-      - name: Install Dependencies with install
-        run: npm install
-
-      - name: Install Dependencies with ci
-        run: npm ci
-
-      - name: Install Eslint
-        run: npm install -g eslint
-
-      - name: Install Prettier
-        run: npm i -g prettier
-
-      - name: Run ESLint
-        run: npm run lint
-
-      - name: Unit Tests
-        run: npm test -- --watchAll=false  --passWithNoTests
-
-      - name: E2E Tests
-        uses: cypress-io/github-action@v4
-        with:
-          working-directory: web-ui/
-          start: npm start
-          wait-on: "http://localhost:3000"
-
-  deploy-staging:
-    name: Deploy to staging
-    environment:
-      name: Staging
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./web-ui
     steps:
       - uses: actions/checkout@v2
       - name: Install Dependencies
@@ -61,22 +25,18 @@ jobs:
       - name: Deployment on Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting
-          channelId: live
-          projectId: ncv-application-desarrollo
+          args: deploy --only hosting:dev
+        env:
+          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
           PROJECT_PATH: ./web-ui
-        env:
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-    
-  deploy-production:
-    name: Deploy to production
-    environment:
-      name: Production
-    needs: [deploy-staging]
+
+  deployPROD:
+    name: Deploy-prod
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./web-ui
+
     steps:
       - uses: actions/checkout@v2
       - name: Install Dependencies
@@ -90,8 +50,7 @@ jobs:
       - name: Deployment on Firebase
         uses: w9jds/firebase-action@master
         with:
-          args: deploy --only hosting
+          args: deploy --only hosting:prod
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-          FIREBASE_PROJECT: ncv-application
           PROJECT_PATH: ./web-ui
