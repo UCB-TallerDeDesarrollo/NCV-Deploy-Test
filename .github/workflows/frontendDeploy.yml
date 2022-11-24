@@ -8,6 +8,8 @@ on:
 jobs:
   deployDEV:
     name: Deploy-dev
+    environment:
+      name: Staging
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -33,6 +35,8 @@ jobs:
 
   deployPROD:
     name: Deploy-prod
+    environment:
+      name: Production
     runs-on: ubuntu-latest
     defaults:
       run:
