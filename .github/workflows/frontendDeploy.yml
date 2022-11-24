@@ -58,15 +58,16 @@ jobs:
         env:
           CI: false
 
-      - name: Deployment on Firebase
+      - name: Deployment on Firebase 
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
-          channelId: live
-          projectId: ncv-application-desarrollo
-          PROJECT_PATH: ./web-ui
+          projectId: ncv-app-test
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_PROJECT: ncv-app-test
+          PROJECT_PATH: ./web-ui
+        
     
   deploy-production:
     name: Deploy to production
@@ -77,7 +78,7 @@ jobs:
     defaults:
       run:
         working-directory: ./web-ui
-    steps:
+    steps: 
       - uses: actions/checkout@v2
       - name: Install Dependencies
         run: npm install
