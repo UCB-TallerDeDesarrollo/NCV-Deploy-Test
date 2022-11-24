@@ -1,5 +1,15 @@
 {
   "projects": {
     "default": "ncv-application"
-  }
+  },
+  "targets": {
+    "ncv-app-test": {
+      "hosting": {
+        "dev": [
+          "ncv-app-test"
+        ]
+      }
+    }
+  },
+  "etags": {}
 }
